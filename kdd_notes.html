@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="stylesheets/styles.css">
+</head>
+<body>
+<h1 id="notes-on-knowledge-discovery-from-data-kdd">Notes on Knowledge Discovery from Data (KDD)</h1>
+<ul>
+<li>KDD is a process that attempts to discover <strong>patterns</strong> in large data sets</li>
+<li>KDD's overall goal is to extract information from a data set and transform it into an <strong>understandable structure</strong> for further use, e.g. a decision support system</li>
+</ul>
+<p>KDD process can be shown as an iterative sequence of the following steps [1]:</p>
+<ol type="1">
+<li><strong>Data cleaning</strong> (to remove noise and inconsistent data)</li>
+<li><strong>Data integration</strong> (where multiple data sources are combined)</li>
+<li><strong>Data selection</strong> (where data relevant to the analysis task are retrieved from the database)</li>
+<li><strong>Data transformation</strong> (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations) <sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup></li>
+<li><strong>Data mining</strong> (an essential process where intelligent methods are applied to extract data patterns)</li>
+<li><strong>Pattern evaluation</strong> (to identify the truly interesting patterns representing knowledge based on <em>interestingness measures</em>)</li>
+<li><strong>Knowledge presentation</strong> (where visualization and knowledge representation techniques are used to present mined knowledge to users)</li>
+</ol>
+<h1 id="what-kinds-of-patterns-can-be-mined">What Kinds of Patterns Can Be Mined?</h1>
+<h2 id="classconcept-description-characterization-and-discrimination">Class/Concept Description: Characterization and Discrimination</h2>
+<p><strong>Data characterization</strong> is a summarization of the general characteristics or features of a target class of data.</p>
+<ul>
+<li>Statistical measures</li>
+<li>OLAP</li>
+<li>Attribute-oriented Induction</li>
+</ul>
+<p><strong>Data discrimination</strong> is a comparison of the general features of the target class data objects against the general features of objects from one or multiple contrasting classes.</p>
+<h2 id="mining-frequent-patterns-associations-and-correlations">Mining Frequent Patterns, Associations, and Correlations</h2>
+<p>Frequent itemset =&gt; association</p>
+<h2 id="classification-and-regression-for-predictive-analysis">Classification and Regression for Predictive Analysis</h2>
+<p><strong>Classification</strong> is the process of finding a <strong>model</strong> (or function) that describes and distinguishes data classes or concepts. The model are derived based on the analysis of a set of <strong>training data</strong> (i.e., data objects for which the class labels are known). The model is used to predict the class label of objects for which the the class label is unknown.</p>
+<p>Model representation forms:</p>
+<ul>
+<li><strong>classification rules</strong> (i.e. IF-THEN rules)</li>
+<li><strong>decision tree</strong></li>
+<li><strong>neural network</strong></li>
+</ul>
+<p>Whereas classification predicts <em>categorical</em> (discrete, unordered) labels, <strong>regression</strong> models <em>continuous-valued</em> functions.</p>
+<p><strong>Regression analysis</strong> is a statistical methodology that is most often used for numeric prediction, although other methods exist as well. Regression also encompasses the identification of distribution <em>trends</em> based on the available data.</p>
+<h2 id="cluster-analysis">Cluster Analysis</h2>
+<p>In many cases, class-labeled data may simply not exist at the beginning. <strong>Clustering</strong> can be used to generate class labels for a group of data.</p>
+<p>The objects are clustered or grouped based on the principle of <em>maximizing the intraclass similarity and minimizing the interclass similarity</em>.</p>
+<h2 id="outlier-analysis">Outlier Analysis</h2>
+<p>A data set may contain objects that do not comply with the general behavior or model of the data. These data objects are <strong>outliers</strong>. Many data mining methods discard outliers as noise or exceptions. However, in some applications (e.g., fraud detection) the rare events can be more interesting than the more regularly occurring ones. The analysis of outlier data is referred to as <strong>outlier analysis</strong> or <strong>anomaly mining</strong>.</p>
+<h1 id="which-patterns-are-interesting">Which patterns are interesting?</h1>
+<p>A pattern is interesting if it is</p>
+<ol type="1">
+<li><em>easily understood</em> by humans</li>
+<li><em>valid</em> on new or test data with some degree of <em>certainty</em></li>
+<li>potentially <em>useful</em></li>
+<li><em>novel</em></li>
+</ol>
+<p>or if it validates a hypothesis that the user <em>sought to confirm</em>.</p>
+<p>An interesting pattern represents <strong>knowledge</strong>.</p>
+<h2 id="measures-of-pattern-interestingness">Measures of pattern interestingness</h2>
+<ul>
+<li>For association rules
+<ul>
+<li>support</li>
+<li>confidence</li>
+</ul></li>
+<li>For classification rules
+<ul>
+<li>accuracy</li>
+<li>coverage</li>
+</ul></li>
+</ul>
+<h1 id="references">References</h1>
+<p>[1] Han, Jiawei, Micheline Kamber, and Jian Pei. Data Mining: Concepts and Techniques. 3rd ed. Morgan Kaufmann, 2011.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Sometimes data transformation and consolidation are performed before the data selection process, particularly in the case of data warehousing. <em>Data reduction</em> may also be performed to obtain a smaller representation of the original data without sacrificing its integrity.<a href="#fnref1">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>
