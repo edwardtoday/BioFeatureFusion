@@ -11,11 +11,54 @@
   <link rel="stylesheet" href="stylesheets/styles.css">
 </head>
 <body>
-<h1 id="notes-on-knowledge-discovery-from-data-kdd">Notes on Knowledge Discovery from Data (KDD)</h1>
-<p><a id="whatiskdd"></a> # What is KDD?</p>
+<nav id="TOC">
+<ul>
+<li><a href="#notes-on-knowledge-discovery-from-data-kdd">Notes on Knowledge Discovery from Data (KDD)</a></li>
+<li><a href="#what-is-kdd">What is KDD?</a></li>
+<li><a href="#what-kinds-of-patterns-can-be-mined">What Kinds of Patterns Can Be Mined?</a><ul>
+<li><a href="#classconcept-description-characterization-and-discrimination">Class/Concept Description: Characterization and Discrimination</a></li>
+<li><a href="#mining-frequent-patterns-associations-and-correlations">Mining Frequent Patterns, Associations, and Correlations</a><ul>
+<li><a href="#algorithms">Algorithms</a></li>
+</ul></li>
+<li><a href="#classification-and-regression-for-predictive-analysis">Classification and Regression for Predictive Analysis</a></li>
+<li><a href="#cluster-analysis">Cluster Analysis</a></li>
+<li><a href="#outlier-analysis">Outlier Analysis</a></li>
+</ul></li>
+<li><a href="#which-patterns-are-interesting">Which Patterns Are Interesting?</a><ul>
+<li><a href="#associationcorrelation-rules">Association/Correlation Rules</a><ul>
+<li><a href="#lift">Lift</a></li>
+<li><a href="#chisquare">ChiSquare</a></li>
+<li><a href="#all-confidence">All confidence</a></li>
+<li><a href="#max-confidence">Max confidence</a></li>
+<li><a href="#kulczynski">Kulczynski</a></li>
+<li><a href="#cosine">Cosine</a></li>
+</ul></li>
+<li><a href="#measures-of-pattern-interestingness">Measures of Pattern Interestingness</a></li>
+</ul></li>
+<li><a href="#data-preprocessing">Data Preprocessing</a><ul>
+<li><a href="#data-cleaning">Data Cleaning</a></li>
+<li><a href="#data-integration">Data Integration</a></li>
+<li><a href="#data-reduction">Data Reduction</a></li>
+<li><a href="#data-transformation-and-data-discretization">Data Transformation and Data Discretization</a><ul>
+<li><a href="#normalization">Normalization</a></li>
+<li><a href="#discretization">Discretization</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+</nav>
+<h1 id="notes-on-knowledge-discovery-from-data-kdd"><a href="#notes-on-knowledge-discovery-from-data-kdd">Notes on Knowledge Discovery from Data (KDD)</a></h1>
+<p>by Pei QING <script type="text/javascript">
+<!--
+h='&#x63;&#x6f;&#x6d;&#112;&#46;&#112;&#x6f;&#108;&#x79;&#x75;&#46;&#x65;&#100;&#x75;&#46;&#104;&#x6b;';a='&#64;';n='&#x63;&#x73;&#112;&#x71;&#x69;&#110;&#x67;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x63;&#x73;&#112;&#x71;&#x69;&#110;&#x67;&#32;&#x61;&#116;&#32;&#x63;&#x6f;&#x6d;&#112;&#32;&#100;&#x6f;&#116;&#32;&#112;&#x6f;&#108;&#x79;&#x75;&#32;&#100;&#x6f;&#116;&#32;&#x65;&#100;&#x75;&#32;&#100;&#x6f;&#116;&#32;&#104;&#x6b;</noscript></p>
+<p><a id="whatiskdd"></a></p>
+<h1 id="what-is-kdd"><a href="#what-is-kdd">What is KDD?</a></h1>
 <ul>
 <li>KDD is a process that attempts to discover <strong>patterns</strong> in large data sets</li>
-<li>KDD's overall goal is to extract information from a data set and transform it into an <strong>understandable structure</strong> for further use, e.g. a decision support system</li>
+<li>KDD’s overall goal is to extract information from a data set and transform it into an <strong>understandable structure</strong> for further use, e.g. a decision support system</li>
 </ul>
 <p>KDD process can be shown as an iterative sequence of the following steps [1]:</p>
 <ol type="1">
@@ -27,8 +70,9 @@
 <li><strong>Pattern evaluation</strong> (to identify the truly <a href="#interestingpattern">interesting patterns</a> representing knowledge based on <em>interestingness measures</em>)</li>
 <li><strong>Knowledge presentation</strong> (where visualization and knowledge representation techniques are used to present mined knowledge to users)</li>
 </ol>
-<p><a id="patternkind"></a> # What Kinds of Patterns Can Be Mined?</p>
-<h2 id="classconcept-description-characterization-and-discrimination">Class/Concept Description: Characterization and Discrimination</h2>
+<p><a id="patternkind"></a></p>
+<h1 id="what-kinds-of-patterns-can-be-mined"><a href="#what-kinds-of-patterns-can-be-mined">What Kinds of Patterns Can Be Mined?</a></h1>
+<h2 id="classconcept-description-characterization-and-discrimination"><a href="#classconcept-description-characterization-and-discrimination">Class/Concept Description: Characterization and Discrimination</a></h2>
 <p><strong>Data characterization</strong> is a summarization of the general characteristics or features of a target class of data.</p>
 <ul>
 <li>Statistical measures</li>
@@ -36,7 +80,7 @@
 <li>Attribute-oriented Induction</li>
 </ul>
 <p><strong>Data discrimination</strong> is a comparison of the general features of the target class data objects against the general features of objects from one or multiple contrasting classes.</p>
-<h2 id="mining-frequent-patterns-associations-and-correlations">Mining Frequent Patterns, Associations, and Correlations</h2>
+<h2 id="mining-frequent-patterns-associations-and-correlations"><a href="#mining-frequent-patterns-associations-and-correlations">Mining Frequent Patterns, Associations, and Correlations</a></h2>
 <p><strong>Frequent patterns</strong>: Itemsets, subsequences or sub structures that appear frequently in the data set.</p>
 <p>Support &amp; Confidence</p>
 <pre><code>support(A⇒B)=P(A∪B)
@@ -62,7 +106,7 @@ confidence (A⇒B) =P(B|A)</code></pre>
 </ol>
 <p>Correlation rule</p>
 <pre><code>A ⇒ B [support, confidence, correlation]</code></pre>
-<h3 id="algorithms">Algorithms</h3>
+<h3 id="algorithms"><a href="#algorithms">Algorithms</a></h3>
 <ul>
 <li><strong>Apriori</strong> [2]: Finding frequent itemsets by confined candidate generation
 <ol type="1">
@@ -78,22 +122,23 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <li><strong>CLOSET</strong> [PHM00]: Closed itemset mining based on FPgrowth</li>
 <li><strong>Eclat</strong> (Equivalence Class Transformation) [Zak00]: mining frequent itemsets using the vertical data format</li>
 </ul>
-<h2 id="classification-and-regression-for-predictive-analysis">Classification and Regression for Predictive Analysis</h2>
+<h2 id="classification-and-regression-for-predictive-analysis"><a href="#classification-and-regression-for-predictive-analysis">Classification and Regression for Predictive Analysis</a></h2>
 <p><strong>Classification</strong> is the process of finding a <strong>model</strong> (or function) that describes and distinguishes data classes or concepts. The model are derived based on the analysis of a set of <strong>training data</strong> (i.e., data objects for which the class labels are known). The model is used to predict the class label of objects for which the the class label is unknown.</p>
 <p>Model representation forms:</p>
 <ul>
-<li><strong>classification rules</strong> (i.e. IF-THEN rules)</li>
+<li><strong>classification rules</strong> (i.e. IF-THEN rules)</li>
 <li><strong>decision tree</strong></li>
 <li><strong>neural network</strong></li>
 </ul>
 <p>Whereas classification predicts <em>categorical</em> (discrete, unordered) labels, <strong>regression</strong> models <em>continuous-valued</em> functions.</p>
 <p><strong>Regression analysis</strong> is a statistical methodology that is most often used for numeric prediction, although other methods exist as well. Regression also encompasses the identification of distribution <em>trends</em> based on the available data.</p>
-<h2 id="cluster-analysis">Cluster Analysis</h2>
+<h2 id="cluster-analysis"><a href="#cluster-analysis">Cluster Analysis</a></h2>
 <p>In many cases, class-labeled data may simply not exist at the beginning. <strong>Clustering</strong> can be used to generate class labels for a group of data.</p>
 <p>The objects are clustered or grouped based on the principle of <em>maximizing the intraclass similarity and minimizing the interclass similarity</em>.</p>
-<h2 id="outlier-analysis">Outlier Analysis</h2>
+<h2 id="outlier-analysis"><a href="#outlier-analysis">Outlier Analysis</a></h2>
 <p>A data set may contain objects that do not comply with the general behavior or model of the data. These data objects are <strong>outliers</strong>. Many data mining methods discard outliers as noise or exceptions. However, in some applications (e.g., fraud detection) the rare events can be more interesting than the more regularly occurring ones. The analysis of outlier data is referred to as <strong>outlier analysis</strong> or <strong>anomaly mining</strong>.</p>
-<p><a id="interestingpattern"></a> # Which Patterns Are Interesting?</p>
+<p><a id="interestingpattern"></a></p>
+<h1 id="which-patterns-are-interesting"><a href="#which-patterns-are-interesting">Which Patterns Are Interesting?</a></h1>
 <p>A pattern is interesting if it is</p>
 <ol type="1">
 <li><em>easily understood</em> by humans</li>
@@ -103,25 +148,25 @@ confidence (A⇒B) =P(B|A)</code></pre>
 </ol>
 <p>or if it validates a hypothesis that the user <em>sought to confirm</em>.</p>
 <p>An interesting pattern represents <strong>knowledge</strong>.</p>
-<h2 id="associationcorrelation-rules">Association/Correlation Rules</h2>
+<h2 id="associationcorrelation-rules"><a href="#associationcorrelation-rules">Association/Correlation Rules</a></h2>
 <p>If <code>A ⇒ B</code> has a confidence of 70% while <code>B</code> having a support of 85%, the rule might be misleading. Existence of <code>A</code> actually decreases the occurance of <code>B</code>.</p>
-<h3 id="lift">Lift</h3>
+<h3 id="lift"><a href="#lift">Lift</a></h3>
 <p><strong>Lift</strong> assesses the degree to which the occurrence of <code>A</code> “lifts” the occurrence of <code>B</code>. [AY99]</p>
 <pre><code>lift(A,B) = P(A∪B) / ( P(A)P(B) )</code></pre>
-<h3 id="chisquare">ChiSquare</h3>
+<h3 id="chisquare"><a href="#chisquare">ChiSquare</a></h3>
 <p><em>ChiSquare</em> and <em>lift</em> are sensitive to transactions that do not contain the itemsets of interest (<strong>null-transaction</strong>); they would generate unstable results.</p>
 <p>Therefore we need other measures which are <strong>null-invariant</strong>. Here are four of them.</p>
-<h3 id="all-confidence">All confidence</h3>
+<h3 id="all-confidence"><a href="#all-confidence">All confidence</a></h3>
 <pre><code>all_conf(A,B) = sup(A∪B) / ( max {sup(A), sup(B)} )
               = min{P(A|B),P(B|A)}</code></pre>
 <p><code>all_conf(A,B)</code> is the minimum confidence of the two association rules related to <code>A</code> and <code>B</code>, namely, <code>A ⇒ B</code> and <code>B ⇒ A</code>. [Omi03][LKCH03]</p>
-<h3 id="max-confidence">Max confidence</h3>
+<h3 id="max-confidence"><a href="#max-confidence">Max confidence</a></h3>
 <pre><code>max_conf(A,B) = max{P(A|B),P(B|A)}</code></pre>
 <p><code>max_conf</code> measure is the maximum confidence of the two association rules, <code>A ⇒ B</code> and <code>B ⇒ A</code>.</p>
-<h3 id="kulczynski">Kulczynski</h3>
+<h3 id="kulczynski"><a href="#kulczynski">Kulczynski</a></h3>
 <pre><code>Kulc(A,B) = 1/2 (P(A|B) + P(B|A))</code></pre>
 <p>It is the average of two conditional probabilities: the probability of itemset <code>B</code> given itemset <code>A</code>, and the probability of itemset <code>A</code> given itemset <code>B</code>. [WCH10]</p>
-<h3 id="cosine">Cosine</h3>
+<h3 id="cosine"><a href="#cosine">Cosine</a></h3>
 <pre><code>cosine(A,B) = P(A∪B) / sqrt(P(A) × P(B))
             = sup(A∪B) / sqrt(sup(A) × sup(B))
             = sqrt(P(A|B) × P(B|A))</code></pre>
@@ -129,7 +174,7 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <p>To compare the four null-invariant measures, we need <strong>imbalance ratio (IR)</strong>:</p>
 <pre><code>IR(A,B) = |sup(A) − sup(B)| / (sup(A) + sup(B) − sup(A∪B))</code></pre>
 <p>The two measures, <em>Kulc</em> and <em>IR</em>, work together, presenting a clear picture.</p>
-<h2 id="measures-of-pattern-interestingness">Measures of Pattern Interestingness</h2>
+<h2 id="measures-of-pattern-interestingness"><a href="#measures-of-pattern-interestingness">Measures of Pattern Interestingness</a></h2>
 <ul>
 <li>For classification rules
 <ul>
@@ -137,16 +182,18 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <li>coverage</li>
 </ul></li>
 </ul>
-<p><a id="datapreprocessing"></a> # Data Preprocessing</p>
-<p>Poor data quality may lead to poor analysis output. Some methods are susceptible to input data accuracy. Some won't take incomplete data. Other's will be affected by inconsistent data.</p>
-<p><a id="datacleaning"></a> ## Data Cleaning</p>
+<p><a id="datapreprocessing"></a></p>
+<h1 id="data-preprocessing"><a href="#data-preprocessing">Data Preprocessing</a></h1>
+<p>Poor data quality may lead to poor analysis output. Some methods are susceptible to input data accuracy. Some won’t take incomplete data. Other’s will be affected by inconsistent data.</p>
+<p><a id="datacleaning"></a></p>
+<h2 id="data-cleaning"><a href="#data-cleaning">Data Cleaning</a></h2>
 <p>Missing values</p>
 <ul>
 <li>Ignore</li>
 <li>Fill in manually</li>
-<li>Automatically fill in constants (e.g. NULL, Unknown)
+<li>Automatically fill in constants (e.g. NULL, Unknown)
 <ul>
-<li>Null values can be different. How to tell &quot;I don't remember that.&quot; from &quot;I do not have one.&quot;?</li>
+<li>Null values can be different. How to tell “I don’t remember that.” from “I do not have one.”?</li>
 </ul></li>
 <li>Fill in mean/median/estimation</li>
 </ul>
@@ -156,7 +203,8 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <li>Regression: replace values with regression results</li>
 <li>Outlier analysis: remove outliers</li>
 </ul>
-<p><a id="dataintegration"></a> ## Data Integration</p>
+<p><a id="dataintegration"></a></p>
+<h2 id="data-integration"><a href="#data-integration">Data Integration</a></h2>
 <p>Entity Identification Problem</p>
 <ul>
 <li>ID</li>
@@ -176,7 +224,7 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <li>different <em>tax rates</em></li>
 <li>GPA [0,4] vs [0,5] vs [0,100]</li>
 </ul>
-<h2 id="data-reduction">Data Reduction</h2>
+<h2 id="data-reduction"><a href="#data-reduction">Data Reduction</a></h2>
 <p><strong>Data reduction</strong> techniques can be applied to obtain a reduced representation of the data set that is much smaller in volume, yet closely maintains the integrity of the original data.</p>
 <ul>
 <li>Dimension reduction
@@ -208,19 +256,20 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <li>lossy</li>
 </ul></li>
 </ul>
-<p><a id="datatransformation"></a> ## Data Transformation and Data Discretization</p>
+<p><a id="datatransformation"></a></p>
+<h2 id="data-transformation-and-data-discretization"><a href="#data-transformation-and-data-discretization">Data Transformation and Data Discretization</a></h2>
 <p>Strategies for data transformation include the following:</p>
 <ol type="1">
 <li><strong>Smoothing</strong>, which works to remove noise from the data.2. <strong>Attribute construction</strong> (or feature construction), where new attributes are constructed and added from the given set of attributes to help the mining process.3. <strong>Aggregation</strong>, where summary or aggregation operations are applied to the data4. <strong>Normalization</strong>, where the attribute data are scaled so as to fall within a smaller range, such as −1.0 to 1.0, or 0.0 to 1.0.5. <strong>Discretization</strong>, where the raw values of a numeric attribute (e.g., age) are replaced by interval labels (e.g., 0–10, 11–20, etc.) or conceptual labels (e.g., youth, adult, senior).</li>
 <li><strong>Concept hierarchy generation for nominal data</strong>, where attributes such as street can be generalized to higher-level concepts, like city or country.</li>
 </ol>
-<h3 id="normalization">Normalization</h3>
+<h3 id="normalization"><a href="#normalization">Normalization</a></h3>
 <ul>
 <li>Min-max normalization</li>
 <li>z-score normalization</li>
 <li>Decimal scaling</li>
 </ul>
-<h3 id="discretization">Discretization</h3>
+<h3 id="discretization"><a href="#discretization">Discretization</a></h3>
 <ul>
 <li>Binning</li>
 <li>Histogram Analysis</li>
@@ -229,9 +278,10 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <li>ChiMerge</li>
 </ul></li>
 </ul>
-<p><a id="references"></a> # References</p>
+<p><a id="references"></a></p>
+<h1 id="references"><a href="#references">References</a></h1>
 <p>[1] Han, Jiawei, Micheline Kamber, and Jian Pei. Data Mining: Concepts and Techniques. 3rd ed. Morgan Kaufmann, 2011.</p>
-<p>[2] R. Agrawal and R. Srikant. Fast algorithms for mining association rules. In Proc. 1994 Int. Conf. Very Large Data Bases (VLDB’94), pp. 487–499, Santiago, Chile, Sept. 1994.</p>
+<p>[2] R. Agrawal and R. Srikant. Fast algorithms for mining association rules. In Proc. 1994 Int. Conf. Very Large Data Bases (VLDB’94), pp. 487–499, Santiago, Chile, Sept. 1994.</p>
 <section class="footnotes">
 <hr />
 <ol>
