@@ -23,13 +23,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>KDD is a process that attempts to discover <strong>patterns</strong> in large data sets</li>
 <li>KDD’s overall goal is to extract information from a data set and transform it into an <strong>understandable structure</strong> for further use, e.g. a decision support system</li>
 </ul>
-<p>KDD process can be shown as an iterative sequence of the following steps [1]:</p>
+<p>KDD process can be shown as an iterative sequence of the following steps <span class="citation" data-cites="Han:2011wk">[1]</span>:</p>
 <ol type="1">
 <li><a href="#data-cleaning"><strong>Data cleaning</strong></a> (to remove noise and inconsistent data)</li>
 <li><a href="#data-integration"><strong>Data integration</strong></a> (where multiple data sources are combined)</li>
 <li><strong>Data selection</strong> (where data relevant to the analysis task are retrieved from the database)</li>
-<li><a href="#data-transformation-and-data-discretization"><strong>Data transformation</strong></a> (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations) <sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup></li>
-<li>[<strong>Data mining</strong>] (an essential process where intelligent methods are applied to extract data patterns)</li>
+<li><a href="#data-transformation-and-data-discretization"><strong>Data transformation</strong></a> (where data are transformed and consolidated into forms appropriate for mining by performing summary or aggregation operations)<sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup></li>
+<li><strong>Data mining</strong> (an essential process where intelligent methods are applied to extract data patterns)</li>
 <li><strong>Pattern evaluation</strong> (to identify the truly <a href="#which-patterns-are-interesting">interesting patterns</a> representing knowledge based on <em>interestingness measures</em>)</li>
 <li><strong>Knowledge presentation</strong> (where visualization and knowledge representation techniques are used to present mined knowledge to users)</li>
 </ol>
@@ -70,7 +70,7 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <pre><code>A ⇒ B [support, confidence, correlation]</code></pre>
 <h3 id="algorithms">Algorithms</h3>
 <ul>
-<li><strong>Apriori</strong> [2]: Finding frequent itemsets by confined candidate generation
+<li><strong>Apriori</strong> <span class="citation" data-cites="Agrawal:1994ut">[2]</span>: Finding frequent itemsets by confined candidate generation
 <ol type="1">
 <li>Hashing itemsets into buckets [PCY95a]</li>
 <li>transaction reduction</li>
@@ -296,8 +296,8 @@ confidence (A⇒B) =P(B|A)</code></pre>
 </ul></li>
 </ul>
 <h1 id="references">References</h1>
-<p>[1] Han, Jiawei, Micheline Kamber, and Jian Pei. Data Mining: Concepts and Techniques. 3rd ed. Morgan Kaufmann, 2011.</p>
-<p>[2] R. Agrawal and R. Srikant. Fast algorithms for mining association rules. In Proc. 1994 Int. Conf. Very Large Data Bases (VLDB’94), pp. 487–499, Santiago, Chile, Sept. 1994.</p>
+<p>[1]J. Han, M. Kamber, and J. Pei, <em>Data Mining: Concepts and Techniques</em>, 3rd ed. Morgan Kaufmann, 2011.</p>
+<p>[2]R. Agrawal and R. Srikant, “Fast algorithms for mining association rules,” <em>Proc 20th Int Conf Very Large Data Bases</em>, 1994.</p>
 <section class="footnotes">
 <hr />
 <ol>
