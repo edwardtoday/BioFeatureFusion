@@ -12,7 +12,7 @@
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="notes-on-knowledge-discovery-from-data-kdd">Notes on Knowledge Discovery from Data (KDD)</h1>
+<p>ann# Notes on Knowledge Discovery from Data (KDD)</p>
 <p>by Pei QING <script type="text/javascript">
 <!--
 h='&#x63;&#x6f;&#x6d;&#112;&#46;&#112;&#x6f;&#108;&#x79;&#x75;&#46;&#x65;&#100;&#x75;&#46;&#104;&#x6b;';a='&#64;';n='&#x63;&#x73;&#112;&#x71;&#x69;&#110;&#x67;';e=n+a+h;
@@ -22,7 +22,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <h1 id="what-is-kdd">What Is KDD?</h1>
 <ul>
 <li>KDD is a process that attempts to discover <strong>patterns</strong> in large data sets</li>
-<li>KDD’s overall goal is to extract information from a data set and transform it into an <strong>understandable structure</strong> for further use, e.g. a decision support system.</li>
+<li>KDD's overall goal is to extract information from a data set and transform it into an <strong>understandable structure</strong> for further use, e.g. a decision support system.</li>
 </ul>
 <p>KDD process can be shown as an iterative sequence of the following steps <span class="citation" data-cites="Han:2011wk">[1]</span>:</p>
 <ol type="1">
@@ -56,7 +56,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>Find all frequent item sets with at least <em>min_sup</em>.</li>
 </ol>
 <ul>
-<li>The number of frequent itemsets is too large for a large data set. If we have a frequent k-itemset, the total number of frequent itemsets that it contains is <code>2^k - 1</code>.</li>
+<li>The number of frequent itemsets is too large for a large data set. If we have a frequent k-itemset, the total number of frequent itemsets that it contains is <span class="math">\(2^k - 1\)</span>.</li>
 <li>Finding closed &amp; maximal frequent itemsets
 <ul>
 <li><strong>closed frequent itemset</strong>: no frequent super-itemset with same support</li>
@@ -93,7 +93,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <p><strong>Classification</strong> is the process of finding a <strong>model</strong> (or function) that describes and distinguishes data classes or concepts. The model are derived based on the analysis of a set of <strong>training data</strong> (i.e., data objects for which the class labels are known). The model is used to predict the class label of objects for which the the class label is unknown.</p>
 <p>Model representation forms:</p>
 <ul>
-<li><strong>classification rules</strong> (i.e. IF-THEN rules)</li>
+<li><strong>classification rules</strong> (i.e. IF-THEN rules)</li>
 <li><a href="#decision-tree"><strong>decision tree</strong></a></li>
 <li><strong>neural network</strong></li>
 </ul>
@@ -108,8 +108,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li><strong>CART</strong></li>
 <li>CHAID, popular in marketing</li>
 </ul>
-<p>At each level, select the attribute in the <strong>attribute list</strong> that, according to the <strong>attribute selection method</strong>, “best” discriminates the given tuples. If no attribute is available at current level, return the majority class.</p>
-<p>ID3 uses <strong>information gain</strong> as its attribute selection measure. This is biased toward attributes with a large number of values. (E.g. N items have unique IDs. Selecting ID as the “best” attribute returns N nodes each with only one tuple.)</p>
+<p>At each level, select the attribute in the <strong>attribute list</strong> that, according to the <strong>attribute selection method</strong>, &quot;best&quot; discriminates the given tuples. If no attribute is available at current level, return the majority class.</p>
+<p>ID3 uses <strong>information gain</strong> as its attribute selection measure. This is biased toward attributes with a large number of values. (E.g. N items have unique IDs. Selecting ID as the &quot;best&quot; attribute returns N nodes each with only one tuple.)</p>
 <p><span class="math">\[Info(D) = -\sum_{i=1}^{m}{p_{i} log_2(p_{i})}\]</span> <span class="math">\[Info_{A}(D) = \sum_{j=1}^{v}{\frac{|D_j|}{|D|}\times Info(D_{j})}\]</span> <span class="math">\[Gain(A) = Info(D) - Info_{A}(D)\]</span></p>
 <p>C4.5 uses <strong>gain ratio</strong> to overcome this bias by normalizing information gain.</p>
 <p><span class="math">\[SplitInfo_{A}(D) = -\sum_{j=1}^{v}{\frac{|D_j|}{|D|} \times
@@ -134,7 +134,7 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 </ul>
 <h4 id="problems-with-decision-trees">Problems with Decision Trees</h4>
 <ul>
-<li><strong>Repetition</strong>: The same attribute may be tested repeatedly along a branch. E.g. “price &gt; 50?”, then “price &lt; 100?”, followed by “100 &gt; price &gt; 80”, …</li>
+<li><strong>Repetition</strong>: The same attribute may be tested repeatedly along a branch. E.g. &quot;price &gt; 50?&quot;, then &quot;price &lt; 100?&quot;, followed by &quot;100 &gt; price &gt; 80&quot;, ...</li>
 <li><strong>Replication</strong>: Duplicate subtrees exist within the tree (, possibly in different branches.)</li>
 </ul>
 <p>Use multivariate splits to relieve these problems. Or use a rule-based classifier instead of a decision tree classifier.</p>
@@ -142,24 +142,26 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <li>Scalability: ID3, C4.5 and CART works for small data sets. What if the data set is disk-resident?
 <ul>
 <li><strong>RainForest</strong>: maintains an AVC-set (attribute-value, classlabel)</li>
-<li><strong>BOAT</strong> (Bootstrapped Optimistic Algorithm for Tree Construction): bootstrapping to create smaller samples of the training data that fits in memory. Each subset is used to construct a tree. The trees are examined and used to construct a new tree that is “very close” to the tree that would have been generated if all training data had fit in memory.</li>
+<li><strong>BOAT</strong> (Bootstrapped Optimistic Algorithm for Tree Construction): bootstrapping to create smaller samples of the training data that fits in memory. Each subset is used to construct a tree. The trees are examined and used to construct a new tree that is &quot;very close&quot; to the tree that would have been generated if all training data had fit in memory.</li>
 <li>2~3x faster than RainForest while constructing exactly the same tree.</li>
 <li>Incremental updates. BOAT can take new insertions and deletions for the training data without having to reconstruct the tree.</li>
 </ul></li>
 </ul>
 <h3 id="bayes-classification">Bayes Classification</h3>
-<p><code>P(H)</code>, <code>P(X|H)</code> and <code>P(X)</code> may be estimated from the given data. The posterior probability, <code>P(H|X)</code>, can be calculated from them. Bayes’s theorem:</p>
+<p><span class="math">\(P(H)\)</span>, <span class="math">\(P(X|H)\)</span> and <span class="math">\(P(X)\)</span> may be estimated from the given data. The posterior probability, <span class="math">\(P(H|X)\)</span>, can be calculated from them. Bayes's theorem:</p>
 <p><span class="math">\[P(H|X) = \frac{P(X|H)P(H)}{P(X)}\]</span></p>
 <p>Naive Bayesian Classifier</p>
 <ul>
 <li>assumption: <strong>class-conditional independence</strong></li>
-<li>maximize <code>P(X|Ci)</code></li>
+<li>maximize <span class="math">\(P(X|C_i)\)</span></li>
 <li>Note: If we have a probability of zero, <strong>Laplacian correction</strong> can help.</li>
 </ul>
 <h3 id="rule-based-classification">Rule-Based Classification</h3>
 <p>An IF-THEN rule:</p>
-<pre><code>IF *condition* THEN *conclusion*.</code></pre>
-<p>A rule <code>R</code> can be assessed by its <strong>coverage</strong> and <strong>accuracy</strong>.</p>
+<blockquote>
+<p>IF <em>condition</em> THEN <em>conclusion</em>.</p>
+</blockquote>
+<p>A rule <span class="math">\(R\)</span> can be assessed by its <strong>coverage</strong> and <strong>accuracy</strong>.</p>
 <p><span class="math">\[coverage(R) = \frac{n_{covers}}{|D|}\]</span></p>
 <p><span class="math">\[accuracy(R) = \frac{n_{correct}}{n_{covers}}\]</span></p>
 <h4 id="extracting-classification-rules-from-a-decision-tree">Extracting Classification Rules From a Decision Tree</h4>
@@ -170,7 +172,7 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>Accuracy alone is not a good measure. A rule can sacrifice coverage for a higher accuracy.</p>
 <p>Entropy, or information gain measure, is better.</p>
 <p>Another measure based on information gain was proposed in <strong>FOIL</strong> (First Order Inductive Leaner).</p>
-<p>We can also use a statistic test of significance to determine if the apparent effect of a rule is not attributed to chance but instead indicates a genuine correlation between attribute values and classes. The <strong>likelihood ratio statistic</strong> can be found in pp.363.</p>
+<p>We can also use a statistic test of significance to determine if the apparent effect of a rule is not attributed to chance but instead indicates a genuine correlation between attribute values and classes. The <strong>likelihood ratio statistic</strong> can be found in <span class="citation" data-cites="Han:2011wk">[1]</span>.</p>
 <h4 id="pruning-the-rule-set">Pruning the Rule Set</h4>
 <p>Prune any condition that does not improve estimated accuracy of the rule for a given rule antecedent.</p>
 <p>Prune rules that do not improve estimated accuracy of the rule set.</p>
@@ -190,7 +192,7 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>Evaluation measures</p>
 <ul>
 <li>accuracy <span class="math">\[accuracy = \frac{TP + TN}{P + N}\]</span></li>
-<li>error rate, <code>1 - accuracy</code> <span class="math">\[error\ rate = \frac{FP + FN}{P + N}\]</span>
+<li>error rate, <span class="math">\(1 - accuracy\)</span> <span class="math">\[error\ rate = \frac{FP + FN}{P + N}\]</span>
 <ul>
 <li>If we use the training set to estimate the error rate of a model, this quantity is known as <strong>resubstitution error</strong></li>
 </ul></li>
@@ -219,6 +221,41 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <li><strong>Scalability</strong>: ability to construct the classifier efficiently given large amounts of data.</li>
 <li><strong>Interpretability</strong>: level of understanding and insight that is provided by the classifier or predictor. This is subjective and therefore difficult to assess.</li>
 </ul>
+<h4 id="cross-validation">Cross-Validation</h4>
+<p>In general, stratified 10-fold cross-validation is recommended for estimating accu- racy (even if computation power allows using more folds) due to its relatively low bias and variance.</p>
+<h4 id="bootstrap">Bootstrap</h4>
+<p>A commonly used one is the <strong>.632 bootstrap</strong>, which works as follows. Suppose we are given a data set of <span class="math">\(d\)</span> tuples. The data set is sampled d times, with replacement, resulting in a <em>bootstrap sample</em> or training set of <span class="math">\(d\)</span> samples. It is very likely that some of the original data tuples will occur more than once in this sample. The data tuples that did not make it into the training set end up forming the test set. Suppose we were to try this out several times. As it turns out, on average, 63.2% of the original data tuples will end up in the bootstrap sample, and the remaining 36.8% will form the test set (hence, the name, .632 bootstrap).</p>
+<p>We can repeat the sampling procedure k times, where in each iteration, we use the current test set to obtain an accuracy estimate of the model obtained from the current bootstrap sample. The overall accuracy of the model, M, is then estimated as</p>
+<p><span class="math">\[Acc(M) = \frac{1}{k}(0.632 \times Acc(M_{i})_{test\_set} + 0.368
+\times Acc(M_{i})_{train\_set})\]</span></p>
+<p>Bootstrapping tends to be overly optimistic. It works best with small data sets.</p>
+<h4 id="statistical-tests-of-significance">Statistical Tests of Significance</h4>
+<p>Mean error rates are just <em>estimates</em> of error on the true population of future data cases. Although the mean error rates obtained for models may appear different, that difference may not be statistically significant. What if any difference between the models may just be attributed to chance?</p>
+<p>Suppose we have trained and tested two models, <span class="math">\(M_1\)</span> and <span class="math">\(M_2\)</span>. In such cases, we do a <strong>pairwise comparison</strong> of the two models for <em>each</em> 10-fold cross-validation round. That is, for the <span class="math">\(i\)</span>th round of 10-fold cross-validation, the same cross-validation partitioning is used to obtain an error rate for <span class="math">\(M_1\)</span> and for <span class="math">\(M_2\)</span>. Let <span class="math">\(err(M_1)_i\)</span> (or <span class="math">\(err(M_2)_i\)</span>) be the error rate of model <span class="math">\(M_1\)</span> (or <span class="math">\(M_2\)</span>) on round <span class="math">\(i\)</span>. The error rates for <span class="math">\(M_1\)</span> are averaged to obtain a mean error rate for <span class="math">\(M_1\)</span>, denoted <span class="math">\(\overline{err}(M_1)\)</span>. Similarly, we can obtain <span class="math">\(\overline{err}(M_2)\)</span>. The variance of the difference between the two models is denoted <span class="math">\(var(M_1 - M_2)\)</span>. The <em>t</em>-test computes the <em>t-statistic with k-1 degrees of freedom</em> for <em>k</em> samples. In our example, we have <em>k=10</em> (the <em>k</em> samples are error rates obtained from ten 10-fold cross-validations for each model.) The <em>t</em>-statistic for pairwise comparison is computed as follows: <span class="math">\[t = \frac{\overline{err}(M_1)-\overline{err}(M_2)}{\sqrt{var(M_1 - M_2)/k}},\]</span> where <span class="math">\[var(M_1 - M_2) = \frac{1}{k}
+\sum_{i=1}^{k}{[err(M_1)_i - err(M_2)_i - (\overline{err}(M_1) - \overline{err}(M_2))]^2}.\]</span></p>
+<p>Compute <span class="math">\(t\)</span> and select a <em>significance level</em>, usually 5% or 1% in practice. Then consult a table for the <em>t-distribution</em>. We shall tell whether the difference between <span class="math">\(M_1\)</span> and <span class="math">\(M_2\)</span> is statistically significant.</p>
+<p>If two test sets are used instead of a common one, we shall use the nonpaired version of the <em>t</em>-test. The variance is estimated as <span class="math">\[var(M_1 - M_2) = \sqrt{\frac{var(M_1)}{k_1} + \frac{var(M_2}{k_2}},\]</span> and <span class="math">\(k_1\)</span> and <span class="math">\(k_2\)</span> are the number of cross-validation samples used for <span class="math">\(M_1\)</span> and <span class="math">\(M_2\)</span>, respectively. When consulting the table of <em>t</em>-distribution, the number of freedom used is taken as the minimum number of degrees of the two models.</p>
+<h4 id="cost-benefit-and-roc-curves">Cost-Benefit and ROC Curves</h4>
+<p>Up to now, we have assumed equal costs of true positives, false positives and false negatives. In real applications, such as medical prediction, they may have different costs (e.g. financial or timing).</p>
+<p>Or we can assign costs to each decision. And the goal of the model could be to minimize the estimated cost of future decisions.</p>
+<p><strong>Receiver operating characteristic</strong> curves show the trade-off between the <em>true positive rate (TPR)</em> and the <em>false positive rate (FPR)</em>. <span class="math">\[TPR = \frac{TP}{P}, FPR = \frac{FP}{N}\]</span> TPR is sensitivity mentioned in <em><a href="#classifier-evaluation">Classifier Evaluation section</a> and FPR is1-specificity</em>.</p>
+<p>To plot an ROC curve for a given classification model, M, the model must be able to return a probability of the predicted class for each test tuple.</p>
+<figure>
+<img src="http://upload.wikimedia.org/wikipedia/commons/6/6b/Roccurves.png" alt="ROC Curve" /><figcaption>ROC Curve</figcaption>
+</figure>
+<p>The closer the area under ROC curve is to 1.0, the more accurate the model is.</p>
+<h3 id="improving-classification-accuracy">Improving Classification Accuracy</h3>
+<p>Bagging, boosting, and random forests are examples of <strong>ensemble methods</strong>, which combine a series of base classifiers to create an improved composite classification model.</p>
+<ul>
+<li><strong>Bagging</strong>
+<ul>
+<li>The term <em>bagging</em> stands for <em>bootstrap aggregation</em>. Each training set is a bootstrap sample.</li>
+<li>The bagged classifier return by majority voting (or average value in continuous value prediction).</li>
+<li>The bagged classifier often has significantly greater accuracy than a single classifier derived from <em>D</em>, the original training data. It will not be considerably worse and is more robust to the effects of noisy data and overfitting. The increased accuracy occurs because the composite model reduces the variance of the individual classifiers.</li>
+</ul></li>
+<li>Boosting</li>
+<li>Random Forest</li>
+</ul>
 <h2 id="cluster-analysis">Cluster Analysis</h2>
 <p>In many cases, class-labeled data may simply not exist at the beginning. <strong>Clustering</strong> can be used to generate class labels for a group of data.</p>
 <p>The objects are clustered or grouped based on the principle of <em>maximizing the intraclass similarity and minimizing the interclass similarity</em>.</p>
@@ -235,46 +272,35 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>or if it validates a hypothesis that the user <em>sought to confirm</em>.</p>
 <p>An interesting pattern represents <strong>knowledge</strong>.</p>
 <h2 id="associationcorrelation-rules">Association/Correlation Rules</h2>
-<p>If <code>A ⇒ B</code> has a confidence of 70% while <code>B</code> having a support of 85%, the rule might be misleading. Existence of <code>A</code> actually decreases the occurrence of <code>B</code>.</p>
+<p>If <span class="math">\(A ⇒ B\)</span> has a confidence of 70% while <span class="math">\(B\)</span> having a support of 85%, the rule might be misleading. Existence of <span class="math">\(A\)</span> actually decreases the occurrence of <span class="math">\(B\)</span>.</p>
 <ul>
-<li><strong>Lift</strong> assesses the degree to which the occurrence of <code>A</code> “lifts” the occurrence of <code>B</code>. [AY99] <span class="math">\[lift(A,B) = \frac{P(A∪B)}{P(A)P(B)}\]</span></li>
-<li><em>ChiSquare</em> and <em>lift</em> are sensitive to transactions that do not contain the itemsets of interest (<strong>null-transaction</strong>); they would generate unstable results.</li>
+<li><strong>Lift</strong> assesses the degree to which the occurrence of <span class="math">\(A\)</span> “lifts” the occurrence of <span class="math">\(B\)</span>. [AY99] <span class="math">\[lift(A,B) = \frac{P(A∪B)}{P(A)P(B)}\]</span></li>
 </ul>
-<p>Therefore we need other measures which are <strong>null-invariant</strong>. Here are four of them.</p>
+<p><em>ChiSquare</em> and <em>lift</em> are sensitive to transactions that do not contain the itemsets of interest (<strong>null-transaction</strong>); they would generate unstable results. Therefore we need other measures which are <strong>null-invariant</strong>. Here are four of them.</p>
 <ul>
 <li><strong>All confidence</strong> <span class="math">\[all\_conf(A,B)
     = \frac{sup(A∪B)}{max(sup(A), sup(B))}
-    = min(P(A|B),P(B|A))\]</span></li>
-</ul>
-<p><code>all_conf(A,B)</code> is the minimum confidence of the two association rules related to <code>A</code> and <code>B</code>, namely, <code>A ⇒ B</code> and <code>B ⇒ A</code>. [Omi03][LKCH03]</p>
-<ul>
-<li><strong>Max confidence</strong> <span class="math">\[max\_conf(A,B) = max(P(A|B),P(B|A))\]</span></li>
-</ul>
-<p><code>max_conf</code> measure is the maximum confidence of the two association rules, <code>A ⇒ B</code> and <code>B ⇒ A</code>.</p>
-<ul>
-<li><strong>Kulczynski</strong> <span class="math">\[Kulc(A,B) = \frac{1}{2} (P(A|B) + P(B|A))\]</span></li>
-</ul>
-<p>It is the average of two conditional probabilities: the probability of itemset <code>B</code> given itemset <code>A</code>, and the probability of itemset <code>A</code> given itemset <code>B</code>. [WCH10]</p>
-<ul>
+    = min(P(A|B),P(B|A))\]</span> <span class="math">\(all\_conf(A,B)\)</span> is the minimum confidence of the two association rules related to <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, namely, <span class="math">\(A ⇒ B\)</span> and <span class="math">\(B ⇒ A\)</span>. [Omi03; LKCH03]</li>
+<li><strong>Max confidence</strong> <span class="math">\[max\_conf(A,B) = max(P(A|B),P(B|A))\]</span> <span class="math">\(max\_conf(A,B)\)</span> measure is the maximum confidence of the two association rules, <span class="math">\(A ⇒ B\)</span> and <span class="math">\(B ⇒ A\)</span>.</li>
+<li><strong>Kulczynski</strong> <span class="math">\[Kulc(A,B) = \frac{1}{2} (P(A|B) + P(B|A))\]</span> It is the average of two conditional probabilities: the probability of itemset <span class="math">\(B\)</span> given itemset <span class="math">\(A\)</span>, and the probability of itemset <span class="math">\(A\)</span> given itemset <span class="math">\(B\)</span>. [WCH10]</li>
 <li><strong>Cosine</strong> <span class="math">\[cosine(A,B)
     = \frac{P(A∪B)}{\sqrt{P(A) \times P(B)}}
     = \frac{sup(A∪B)}{\sqrt{sup(A) \times sup(B)}}
-    = \sqrt{P(A|B) \times P(B|A})\]</span></li>
+    = \sqrt{P(A|B) \times P(B|A})\]</span> The cosine measure can be viewed as a <em>harmonized lift</em> measure.</li>
 </ul>
-<p>The cosine measure can be viewed as a <em>harmonized lift</em> measure.</p>
 <p>To compare the four null-invariant measures, we need <strong>imbalance ratio (IR)</strong>:</p>
 <p><span class="math">\[IR(A,B) = \frac{|sup(A) − sup(B)|}{sup(A) + sup(B) − sup(A∪B)}\]</span></p>
 <p>The two measures, <em>Kulc</em> and <em>IR</em>, work together, presenting a clear picture.</p>
 <h1 id="data-preprocessing">Data Preprocessing</h1>
-<p>Poor data quality may lead to poor analysis output. Some methods are susceptible to input data accuracy. Some won’t take incomplete data. Other’s will be affected by inconsistent data.</p>
+<p>Poor data quality may lead to poor analysis output. Some methods are susceptible to input data accuracy. Some won't take incomplete data. Other's will be affected by inconsistent data.</p>
 <h2 id="data-cleaning">Data Cleaning</h2>
 <p>Missing values</p>
 <ul>
 <li>Ignore</li>
 <li>Fill in manually</li>
-<li>Automatically fill in constants (e.g. NULL, Unknown)
+<li>Automatically fill in constants (e.g. NULL, Unknown)
 <ul>
-<li>Null values can be different. How to tell “I don’t remember that.” from “I do not have one.”?</li>
+<li>Null values can be different. How to tell &quot;I don't remember that.&quot; from &quot;I do not have one.&quot;?</li>
 </ul></li>
 <li>Fill in mean/median/estimation</li>
 </ul>
