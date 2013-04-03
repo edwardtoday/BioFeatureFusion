@@ -9,6 +9,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="stylesheets/styles.css">
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
 <h1 id="notes-on-knowledge-discovery-from-data-kdd">Notes on Knowledge Discovery from Data (KDD)</h1>
@@ -44,10 +45,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <h2 id="mining-frequent-patterns-associations-and-correlations">Mining Frequent Patterns, Associations, and Correlations</h2>
 <p><strong>Frequent patterns</strong>: Itemsets, subsequences or sub structures that appear frequently in the data set.</p>
 <p>Support &amp; Confidence</p>
-<pre><code>support(A⇒B)=P(A∪B)
-confidence (A⇒B) =P(B|A)</code></pre>
+<p><span class="math">\[support(A⇒B) = P(A∪B)\]</span></p>
+<p><span class="math">\[confidence(A⇒B) = P(B|A)\]</span></p>
 <p>Association rule</p>
-<pre><code>computer ⇒ antivirus software [support = 2%, confidence = 60%]</code></pre>
+<p><span class="math">\[computer ⇒ antivirus\ software [support = 2\%, confidence = 60\%]\]</span></p>
 <p><strong>Strong</strong> association rule: rules that satisfy both a minimum support threshold (<em>min_sup</em>) and a minimum confidence threshold (<em>min_conf</em>).</p>
 <p>Association rule mining</p>
 <ol type="1">
@@ -66,7 +67,7 @@ confidence (A⇒B) =P(B|A)</code></pre>
 <li><p>Generate strong association rules from the frequent itemsets.</p></li>
 </ol>
 <p>Correlation rule</p>
-<pre><code>A ⇒ B [support, confidence, correlation]</code></pre>
+<p><span class="math">\[A ⇒ B [support, confidence, correlation]\]</span></p>
 <h3 id="algorithms">Algorithms</h3>
 <ul>
 <li><strong>Apriori</strong> <span class="citation" data-cites="Agrawal:1994ut">[2]</span>: Finding frequent itemsets by confined candidate generation
@@ -104,11 +105,12 @@ confidence (A⇒B) =P(B|A)</code></pre>
 </ul>
 <p>At each level, select the attribute in the <strong>attribute list</strong> that, according to the <strong>attribute selection method</strong>, “best” discriminates the given tuples. If no attribute is available at current level, return the majority class.</p>
 <p>ID3 uses <strong>information gain</strong> as its attribute selection measure. This is biased toward attributes with a large number of values. (E.g. N items have unique IDs. Selecting ID as the “best” attribute returns N nodes each with only one tuple.)</p>
-<p>TODO 8.1 8.2 8.3</p>
+<p><span class="math">\[Info(D) = -\sum_{i=1}^{m}{p_{i} log_2(p_{i})}\]</span> <span class="math">\[Info_{A}(D) = \sum_{j=1}^{v}{\frac{|D_j|}{|D|}\times Info(D_{j})}\]</span> <span class="math">\[Gain(A) = Info(D) - Info_{A}(D)\]</span></p>
 <p>C4.5 uses <strong>gain ratio</strong> to overcome this bias by normalizing information gain.</p>
-<p>TODO 8.5 8.6</p>
+<p><span class="math">\[SplitInfo_{A}(D) = -\sum_{j=1}^{v}{\frac{|D_j|}{|D|} \times
+log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{Gain(A)}{SplitInfo_{A}(D)}\]</span></p>
 <p>CART uses <strong>Gini index</strong>.</p>
-<p>TODO 8.7</p>
+<p><span class="math">\[Gini(D) = 1 - \sum_{i=1}^{m}{p_{i}^2}\]</span></p>
 <p>CHAID uses a measure based on ChiSquare test.</p>
 <p>Other attribute selection measures include</p>
 <ul>
@@ -127,7 +129,7 @@ confidence (A⇒B) =P(B|A)</code></pre>
 </ul>
 <h4 id="problems-with-decision-trees">Problems with Decision Trees</h4>
 <ul>
-<li><strong>Repetition</strong>: The same attribute may be tested repeatedly along a branch. E.g. “price &gt; 50?”, then “price &lt; 100?”, followed by “price &gt; 80&gt;”, …</li>
+<li><strong>Repetition</strong>: The same attribute may be tested repeatedly along a branch. E.g. “price &gt; 50?”, then “price &lt; 100?”, followed by “100 &gt; price &gt; 80”, …</li>
 <li><strong>Replication</strong>: Duplicate subtrees exist within the tree (, possibly in different branches.)</li>
 </ul>
 <p>Use multivariate splits to relieve these problems. Or use a rule-based classifier instead of a decision tree classifier.</p>
@@ -144,18 +146,19 @@ confidence (A⇒B) =P(B|A)</code></pre>
 </ul>
 <h3 id="bayes-classification">Bayes Classification</h3>
 <p><code>P(H)</code>, <code>P(X|H)</code> and <code>P(X)</code> may be estimated from the given data. The posterior probability, <code>P(H|X)</code>, can be calculated from them. Bayes’s theorem:</p>
-<pre><code>P(H|X) = P(X|H)P(H) / P(X)</code></pre>
+<p><span class="math">\[P(H|X) = \frac{P(X|H)P(H)}{P(X)}\]</span></p>
 <p>Naive Bayesian Classifier</p>
-<pre><code>* assumption: **class-conditional independence**
-* maximize `P(X|Ci)`
-* Note: If we have a probability of zero, **Laplacian correction** can help.</code></pre>
+<ul>
+<li>assumption: <strong>class-conditional independence</strong></li>
+<li>maximize <code>P(X|Ci)</code></li>
+<li>Note: If we have a probability of zero, <strong>Laplacian correction</strong> can help.</li>
+</ul>
 <h3 id="rule-based-classification">Rule-Based Classification</h3>
 <p>An IF-THEN rule:</p>
 <pre><code>IF *condition* THEN *conclusion*.</code></pre>
 <p>A rule <code>R</code> can be assessed by its <strong>coverage</strong> and <strong>accuracy</strong>.</p>
-<pre><code>coverage(R) = n_covers / |D|
-
-accuracy(R) = n_correct / n_covers</code></pre>
+<p><span class="math">\[coverage(R) = \frac{n_{covers}}{|D|}\]</span></p>
+<p><span class="math">\[accuracy(R) = \frac{n_{correct}}{n_{covers}}\]</span></p>
 <h4 id="extracting-classification-rules-from-a-decision-tree">Extracting Classification Rules From a Decision Tree</h4>
 <p>Each leaf forms a rule. The rules are <strong>mutually exclusive</strong> (no conflicted rules) and <strong>exhaustive</strong> (no need for a default rule).</p>
 <h4 id="rule-induction-using-a-sequential-covering-algorithm">Rule Induction Using a Sequential Covering Algorithm</h4>
@@ -169,7 +172,7 @@ accuracy(R) = n_correct / n_covers</code></pre>
 <p>Prune any condition that does not improve estimated accuracy of the rule for a given rule antecedent.</p>
 <p>Prune rules that do not improve estimated accuracy of the rule set.</p>
 <p>After pruning, the rule set may no longer be mutually exclusive and exhaustive. C4.5 adopts a <strong>class-based ordering scheme</strong>.</p>
-<p>FOIL uses FOIL_Prune(R) = (pos - neg) / (pos + neg)</p>
+<p>FOIL uses <span class="math">\[FOIL_Prune(R) = \frac{pos - neg}{pos + neg}\]</span></p>
 <h3 id="model-evaluation">Model Evaluation</h3>
 <h2 id="cluster-analysis">Cluster Analysis</h2>
 <p>In many cases, class-labeled data may simply not exist at the beginning. <strong>Clustering</strong> can be used to generate class labels for a group of data.</p>
@@ -190,27 +193,29 @@ accuracy(R) = n_correct / n_covers</code></pre>
 <p>If <code>A ⇒ B</code> has a confidence of 70% while <code>B</code> having a support of 85%, the rule might be misleading. Existence of <code>A</code> actually decreases the occurrence of <code>B</code>.</p>
 <h3 id="lift">Lift</h3>
 <p><strong>Lift</strong> assesses the degree to which the occurrence of <code>A</code> “lifts” the occurrence of <code>B</code>. [AY99]</p>
-<pre><code>lift(A,B) = P(A∪B) / ( P(A)P(B) )</code></pre>
+<p><span class="math">\[lift(A,B) = \frac{P(A∪B)}{P(A)P(B)}\]</span></p>
 <h3 id="chisquare">ChiSquare</h3>
 <p><em>ChiSquare</em> and <em>lift</em> are sensitive to transactions that do not contain the itemsets of interest (<strong>null-transaction</strong>); they would generate unstable results.</p>
 <p>Therefore we need other measures which are <strong>null-invariant</strong>. Here are four of them.</p>
 <h3 id="all-confidence">All confidence</h3>
-<pre><code>all_conf(A,B) = sup(A∪B) / ( max {sup(A), sup(B)} )
-              = min{P(A|B),P(B|A)}</code></pre>
+<p><span class="math">\[all\_conf(A,B)
+    = \frac{sup(A∪B)}{max(sup(A), sup(B))}
+    = min(P(A|B),P(B|A))\]</span></p>
 <p><code>all_conf(A,B)</code> is the minimum confidence of the two association rules related to <code>A</code> and <code>B</code>, namely, <code>A ⇒ B</code> and <code>B ⇒ A</code>. [Omi03][LKCH03]</p>
 <h3 id="max-confidence">Max confidence</h3>
-<pre><code>max_conf(A,B) = max{P(A|B),P(B|A)}</code></pre>
+<p><span class="math">\[max\_conf(A,B) = max(P(A|B),P(B|A))\]</span></p>
 <p><code>max_conf</code> measure is the maximum confidence of the two association rules, <code>A ⇒ B</code> and <code>B ⇒ A</code>.</p>
 <h3 id="kulczynski">Kulczynski</h3>
-<pre><code>Kulc(A,B) = 1/2 (P(A|B) + P(B|A))</code></pre>
+<p><span class="math">\[Kulc(A,B) = \frac{1}{2} (P(A|B) + P(B|A))\]</span></p>
 <p>It is the average of two conditional probabilities: the probability of itemset <code>B</code> given itemset <code>A</code>, and the probability of itemset <code>A</code> given itemset <code>B</code>. [WCH10]</p>
 <h3 id="cosine">Cosine</h3>
-<pre><code>cosine(A,B) = P(A∪B) / sqrt(P(A) × P(B))
-            = sup(A∪B) / sqrt(sup(A) × sup(B))
-            = sqrt(P(A|B) × P(B|A))</code></pre>
+<p><span class="math">\[cosine(A,B)
+    = \frac{P(A∪B)}{\sqrt{P(A) \times P(B)}}
+    = \frac{sup(A∪B)}{\sqrt{sup(A) \times sup(B)}}
+    = \sqrt{P(A|B) \times P(B|A})\]</span></p>
 <p>The cosine measure can be viewed as a <em>harmonized lift</em> measure.</p>
 <p>To compare the four null-invariant measures, we need <strong>imbalance ratio (IR)</strong>:</p>
-<pre><code>IR(A,B) = |sup(A) − sup(B)| / (sup(A) + sup(B) − sup(A∪B))</code></pre>
+<p><span class="math">\[IR(A,B) = \frac{|sup(A) − sup(B)|}{sup(A) + sup(B) − sup(A∪B)}\]</span></p>
 <p>The two measures, <em>Kulc</em> and <em>IR</em>, work together, presenting a clear picture.</p>
 <h2 id="measures-of-pattern-interestingness">Measures of Pattern Interestingness</h2>
 <ul>
