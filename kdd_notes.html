@@ -53,7 +53,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <p><strong>Strong</strong> association rule: rules that satisfy both a minimum support threshold (<em>min_sup</em>) and a minimum confidence threshold (<em>min_conf</em>).</p>
 <p>Association rule mining</p>
 <ol type="1">
-<li><p>Find all frequent item sets with at least <em>min_sup</em>.</p>
+<li>Find all frequent item sets with at least <em>min_sup</em>.</li>
+</ol>
 <ul>
 <li>The number of frequent itemsets is too large for a large data set. If we have a frequent k-itemset, the total number of frequent itemsets that it contains is <code>2^k - 1</code>.</li>
 <li>Finding closed &amp; maximal frequent itemsets
@@ -64,14 +65,16 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>sub-itemset pruning</li>
 <li>item skipping</li>
 </ul></li>
-</ul></li>
-<li><p>Generate strong association rules from the frequent itemsets.</p></li>
+</ul>
+<ol start="2" type="1">
+<li>Generate strong association rules from the frequent itemsets.</li>
 </ol>
 <p>Correlation rule</p>
 <p><span class="math">\[A ⇒ B [support, confidence, correlation]\]</span></p>
 <h3 id="algorithms">Algorithms</h3>
 <ul>
-<li><strong>Apriori</strong> <span class="citation" data-cites="Agrawal:1994ut">[2]</span>: Finding frequent itemsets by confined candidate generation
+<li><strong>Apriori</strong> <span class="citation" data-cites="Agrawal:1994ut">[2]</span>: Finding frequent itemsets by confined candidate generation</li>
+</ul>
 <ol type="1">
 <li>Hashing itemsets into buckets [PCY95a]</li>
 <li>transaction reduction</li>
@@ -79,7 +82,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>sampling: mining on a subset of the given data [Toi96]</li>
 <li>dynamic itemset counting: start with count-so-far; fewer database scans [BMUT97]</li>
 <li>parallel and distributed association mining [PCY95b][AS96] [CHN+96][ZPOL97]</li>
-</ol></li>
+</ol>
+<ul>
 <li><strong>A-Close</strong> [PBTL99]: Finding frequent closed itemsets</li>
 <li><strong>FPgrowth</strong> [HPY00]: Pattern-growth approach for mining frequent itemsets</li>
 <li><strong>CLOSET</strong> [PHM00]: Closed itemset mining based on FPgrowth</li>
@@ -138,11 +142,9 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <li>Scalability: ID3, C4.5 and CART works for small data sets. What if the data set is disk-resident?
 <ul>
 <li><strong>RainForest</strong>: maintains an AVC-set (attribute-value, classlabel)</li>
-<li><strong>BOAT</strong> (Bootstrapped Optimistic Algorithm for Tree Construction): bootstrapping to create smaller samples of the training data that fits in memory. Each subset is used to construct a tree. The trees are examined and used to construct a new tree that is “very close” to the tree that would have been generated if all training data had fit in memory.
-<ul>
+<li><strong>BOAT</strong> (Bootstrapped Optimistic Algorithm for Tree Construction): bootstrapping to create smaller samples of the training data that fits in memory. Each subset is used to construct a tree. The trees are examined and used to construct a new tree that is “very close” to the tree that would have been generated if all training data had fit in memory.</li>
 <li>2~3x faster than RainForest while constructing exactly the same tree.</li>
 <li>Incremental updates. BOAT can take new insertions and deletions for the training data without having to reconstruct the tree.</li>
-</ul></li>
 </ul></li>
 </ul>
 <h3 id="bayes-classification">Bayes Classification</h3>
@@ -174,7 +176,49 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>Prune rules that do not improve estimated accuracy of the rule set.</p>
 <p>After pruning, the rule set may no longer be mutually exclusive and exhaustive. C4.5 adopts a <strong>class-based ordering scheme</strong>.</p>
 <p>FOIL uses <span class="math">\[FOIL\_Prune(R) = \frac{pos - neg}{pos + neg}\]</span></p>
-<h3 id="model-evaluation">Model Evaluation</h3>
+<h3 id="classifier-evaluation">Classifier Evaluation</h3>
+<p>Terminology</p>
+<ul>
+<li><strong>positive tuples</strong> (P): Tuples of the main class of interest. Let P be the number of positive tuples.</li>
+<li><strong>negative tuples</strong>: All other tuples. Let N be the number of negative tuples.</li>
+<li><strong>True positives</strong> (TP): Positive tuples that were correctly labeled by the classifier. Let TP be the number of true positives.</li>
+<li><strong>True negatives</strong> (TN): Negative tuples that were correctly labeled by the classifier. Let TN be the number of true negatives.</li>
+<li><strong>False positives</strong> (FP): Negative tuples that were incorrectly labeled as positive. Let FP be the number of false positives.</li>
+<li><strong>False negatives</strong> (FN): Positive tuples that were mislabeled as negative. Let FN be the number of false negatives.</li>
+</ul>
+<p>We have <span class="math">\(P = TP + FN, N = FP + TN\)</span>.</p>
+<p>Evaluation measures</p>
+<ul>
+<li>accuracy <span class="math">\[accuracy = \frac{TP + TN}{P + N}\]</span></li>
+<li>error rate, <code>1 - accuracy</code> <span class="math">\[error\ rate = \frac{FP + FN}{P + N}\]</span>
+<ul>
+<li>If we use the training set to estimate the error rate of a model, this quantity is known as <strong>resubstitution error</strong></li>
+</ul></li>
+<li>sensitivity, or true positive rate, recall <span class="math">\[sensitivity = \frac{TP}{P}\]</span></li>
+<li>specificity, or true negative rate <span class="math">\[specificity = \frac{TN}{N}\]</span>
+<ul>
+<li>Sensitivity and specificity can be used to solve class imbalance problem.</li>
+</ul></li>
+<li>precision <span class="math">\[precision = \frac{TP}{TP+FP}\]</span>
+<ul>
+<li>Precision can be thought of a measure of <em>exactness</em> (i.e., what percentage of tuples labeled as positive are actually such), whereas recall is a measure of <em>completeness</em> (what percentage of positive tuples are labeled as such.)</li>
+</ul></li>
+<li><span class="math">\(F_{1}\)</span> is harmonic mean of precision and recall <span class="math">\[F_{1} = \frac{2 \times precision \times recall}{precision +
+  recall}\]</span></li>
+<li><span class="math">\(F_{\beta}\)</span>, where <span class="math">\(\beta\)</span> is a non-negative real number <span class="math">\[F_{\beta} = \frac{(1 + {\beta}^{2}) \times precision \times
+  recall}{{\beta}^{2} \times precision + recall}\]</span>
+<ul>
+<li>Combine precision and recall into a single measure. Commonly used <span class="math">\(F_{\beta}\)</span> measures are <span class="math">\(F_{2}\)</span> and <span class="math">\(F_{0.5}\)</span>.</li>
+</ul></li>
+</ul>
+<p>If tuples can belong to multiple classes, the accuracy measure is not appropriate. It is useful to return a probability class distribution.</p>
+<p>In addition to accuracy-based measures, classifiers can also be compared with respect to the following additional aspects:</p>
+<ul>
+<li><strong>Speed</strong>: computational cost to generate or use the classifier</li>
+<li><strong>Robustness</strong>: ability to make correct predictions given noisy data or missing values</li>
+<li><strong>Scalability</strong>: ability to construct the classifier efficiently given large amounts of data.</li>
+<li><strong>Interpretability</strong>: level of understanding and insight that is provided by the classifier or predictor. This is subjective and therefore difficult to assess.</li>
+</ul>
 <h2 id="cluster-analysis">Cluster Analysis</h2>
 <p>In many cases, class-labeled data may simply not exist at the beginning. <strong>Clustering</strong> can be used to generate class labels for a group of data.</p>
 <p>The objects are clustered or grouped based on the principle of <em>maximizing the intraclass similarity and minimizing the interclass similarity</em>.</p>
@@ -192,40 +236,35 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>An interesting pattern represents <strong>knowledge</strong>.</p>
 <h2 id="associationcorrelation-rules">Association/Correlation Rules</h2>
 <p>If <code>A ⇒ B</code> has a confidence of 70% while <code>B</code> having a support of 85%, the rule might be misleading. Existence of <code>A</code> actually decreases the occurrence of <code>B</code>.</p>
-<h3 id="lift">Lift</h3>
-<p><strong>Lift</strong> assesses the degree to which the occurrence of <code>A</code> “lifts” the occurrence of <code>B</code>. [AY99]</p>
-<p><span class="math">\[lift(A,B) = \frac{P(A∪B)}{P(A)P(B)}\]</span></p>
-<h3 id="chisquare">ChiSquare</h3>
-<p><em>ChiSquare</em> and <em>lift</em> are sensitive to transactions that do not contain the itemsets of interest (<strong>null-transaction</strong>); they would generate unstable results.</p>
+<ul>
+<li><strong>Lift</strong> assesses the degree to which the occurrence of <code>A</code> “lifts” the occurrence of <code>B</code>. [AY99] <span class="math">\[lift(A,B) = \frac{P(A∪B)}{P(A)P(B)}\]</span></li>
+<li><em>ChiSquare</em> and <em>lift</em> are sensitive to transactions that do not contain the itemsets of interest (<strong>null-transaction</strong>); they would generate unstable results.</li>
+</ul>
 <p>Therefore we need other measures which are <strong>null-invariant</strong>. Here are four of them.</p>
-<h3 id="all-confidence">All confidence</h3>
-<p><span class="math">\[all\_conf(A,B)
+<ul>
+<li><strong>All confidence</strong> <span class="math">\[all\_conf(A,B)
     = \frac{sup(A∪B)}{max(sup(A), sup(B))}
-    = min(P(A|B),P(B|A))\]</span></p>
+    = min(P(A|B),P(B|A))\]</span></li>
+</ul>
 <p><code>all_conf(A,B)</code> is the minimum confidence of the two association rules related to <code>A</code> and <code>B</code>, namely, <code>A ⇒ B</code> and <code>B ⇒ A</code>. [Omi03][LKCH03]</p>
-<h3 id="max-confidence">Max confidence</h3>
-<p><span class="math">\[max\_conf(A,B) = max(P(A|B),P(B|A))\]</span></p>
+<ul>
+<li><strong>Max confidence</strong> <span class="math">\[max\_conf(A,B) = max(P(A|B),P(B|A))\]</span></li>
+</ul>
 <p><code>max_conf</code> measure is the maximum confidence of the two association rules, <code>A ⇒ B</code> and <code>B ⇒ A</code>.</p>
-<h3 id="kulczynski">Kulczynski</h3>
-<p><span class="math">\[Kulc(A,B) = \frac{1}{2} (P(A|B) + P(B|A))\]</span></p>
+<ul>
+<li><strong>Kulczynski</strong> <span class="math">\[Kulc(A,B) = \frac{1}{2} (P(A|B) + P(B|A))\]</span></li>
+</ul>
 <p>It is the average of two conditional probabilities: the probability of itemset <code>B</code> given itemset <code>A</code>, and the probability of itemset <code>A</code> given itemset <code>B</code>. [WCH10]</p>
-<h3 id="cosine">Cosine</h3>
-<p><span class="math">\[cosine(A,B)
+<ul>
+<li><strong>Cosine</strong> <span class="math">\[cosine(A,B)
     = \frac{P(A∪B)}{\sqrt{P(A) \times P(B)}}
     = \frac{sup(A∪B)}{\sqrt{sup(A) \times sup(B)}}
-    = \sqrt{P(A|B) \times P(B|A})\]</span></p>
+    = \sqrt{P(A|B) \times P(B|A})\]</span></li>
+</ul>
 <p>The cosine measure can be viewed as a <em>harmonized lift</em> measure.</p>
 <p>To compare the four null-invariant measures, we need <strong>imbalance ratio (IR)</strong>:</p>
 <p><span class="math">\[IR(A,B) = \frac{|sup(A) − sup(B)|}{sup(A) + sup(B) − sup(A∪B)}\]</span></p>
 <p>The two measures, <em>Kulc</em> and <em>IR</em>, work together, presenting a clear picture.</p>
-<h2 id="measures-of-pattern-interestingness">Measures of Pattern Interestingness</h2>
-<ul>
-<li>For classification rules
-<ul>
-<li>accuracy</li>
-<li>coverage</li>
-</ul></li>
-</ul>
 <h1 id="data-preprocessing">Data Preprocessing</h1>
 <p>Poor data quality may lead to poor analysis output. Some methods are susceptible to input data accuracy. Some won’t take incomplete data. Other’s will be affected by inconsistent data.</p>
 <h2 id="data-cleaning">Data Cleaning</h2>
@@ -277,8 +316,7 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <li>PCA<sup><a href="#fn2" class="footnoteRef" id="fnref2">2</a></sup></li>
 <li>Attribute(feature) subset selection</li>
 </ul></li>
-<li>Numerosity reduction
-<ul>
+<li>Numerosity reduction</li>
 <li>Parametric method: use a model to estimate the data; store only the model (and outliers if necessary)
 <ul>
 <li>regression models</li>
@@ -290,12 +328,9 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <li>Sampling</li>
 <li>Data cube aggregation</li>
 </ul></li>
-</ul></li>
-<li>Data compression
-<ul>
+<li>Data compression</li>
 <li>lossless</li>
 <li>lossy</li>
-</ul></li>
 </ul>
 <h2 id="data-transformation-and-data-discretization">Data Transformation and Data Discretization</h2>
 <p>Strategies for data transformation include the following:</p>
@@ -317,10 +352,8 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <ul>
 <li>Binning</li>
 <li>Histogram Analysis</li>
-<li>Cluster, Decision Tree, Correlation Analysis
-<ul>
+<li>Cluster, Decision Tree, Correlation Analysis</li>
 <li>ChiMerge</li>
-</ul></li>
 </ul>
 <h1 id="references">References</h1>
 <p>[1]J. Han, M. Kamber, and J. Pei, <em>Data Mining: Concepts and Techniques</em>, 3rd ed. Morgan Kaufmann, 2011.</p>
