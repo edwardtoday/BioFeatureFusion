@@ -57,14 +57,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 </ol>
 <ul>
 <li>The number of frequent itemsets is too large for a large data set. If we have a frequent k-itemset, the total number of frequent itemsets that it contains is <span class="math">\(2^k - 1\)</span>.</li>
-<li>Finding closed &amp; maximal frequent itemsets
-<ul>
+<li>Finding closed &amp; maximal frequent itemsets</li>
 <li><strong>closed frequent itemset</strong>: no frequent super-itemset with same support</li>
 <li><strong>maximal frequent itemset</strong>: no frequent super-itemset</li>
 <li>item merging</li>
 <li>sub-itemset pruning</li>
 <li>item skipping</li>
-</ul></li>
 </ul>
 <ol start="2" type="1">
 <li>Generate strong association rules from the frequent itemsets.</li>
@@ -139,13 +137,11 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 </ul>
 <p>Use multivariate splits to relieve these problems. Or use a rule-based classifier instead of a decision tree classifier.</p>
 <ul>
-<li>Scalability: ID3, C4.5 and CART works for small data sets. What if the data set is disk-resident?
-<ul>
+<li>Scalability: ID3, C4.5 and CART works for small data sets. What if the data set is disk-resident?</li>
 <li><strong>RainForest</strong>: maintains an AVC-set (attribute-value, classlabel)</li>
 <li><strong>BOAT</strong> (Bootstrapped Optimistic Algorithm for Tree Construction): bootstrapping to create smaller samples of the training data that fits in memory. Each subset is used to construct a tree. The trees are examined and used to construct a new tree that is &quot;very close&quot; to the tree that would have been generated if all training data had fit in memory.</li>
 <li>2~3x faster than RainForest while constructing exactly the same tree.</li>
 <li>Incremental updates. BOAT can take new insertions and deletions for the training data without having to reconstruct the tree.</li>
-</ul></li>
 </ul>
 <h3 id="bayes-classification">Bayes Classification</h3>
 <p><span class="math">\(P(H)\)</span>, <span class="math">\(P(X|H)\)</span> and <span class="math">\(P(X)\)</span> may be estimated from the given data. The posterior probability, <span class="math">\(P(H|X)\)</span>, can be calculated from them. Bayes's theorem:</p>
@@ -182,7 +178,7 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>Terminology</p>
 <ul>
 <li><strong>positive tuples</strong> (P): Tuples of the main class of interest. Let P be the number of positive tuples.</li>
-<li><strong>negative tuples</strong>: All other tuples. Let N be the number of negative tuples.</li>
+<li><strong>negative tuples</strong> (N): All other tuples. Let N be the number of negative tuples.</li>
 <li><strong>True positives</strong> (TP): Positive tuples that were correctly labeled by the classifier. Let TP be the number of true positives.</li>
 <li><strong>True negatives</strong> (TN): Negative tuples that were correctly labeled by the classifier. Let TN be the number of true negatives.</li>
 <li><strong>False positives</strong> (FP): Negative tuples that were incorrectly labeled as positive. Let FP be the number of false positives.</li>
@@ -192,26 +188,18 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>Evaluation measures</p>
 <ul>
 <li>accuracy <span class="math">\[accuracy = \frac{TP + TN}{P + N}\]</span></li>
-<li>error rate, <span class="math">\(1 - accuracy\)</span> <span class="math">\[error\ rate = \frac{FP + FN}{P + N}\]</span>
-<ul>
+<li>error rate, <span class="math">\(1 - accuracy\)</span> <span class="math">\[error\ rate = \frac{FP + FN}{P + N}\]</span></li>
 <li>If we use the training set to estimate the error rate of a model, this quantity is known as <strong>resubstitution error</strong></li>
-</ul></li>
 <li>sensitivity, or true positive rate, recall <span class="math">\[sensitivity = \frac{TP}{P}\]</span></li>
-<li>specificity, or true negative rate <span class="math">\[specificity = \frac{TN}{N}\]</span>
-<ul>
+<li>specificity, or true negative rate <span class="math">\[specificity = \frac{TN}{N}\]</span></li>
 <li>Sensitivity and specificity can be used to solve class imbalance problem.</li>
-</ul></li>
-<li>precision <span class="math">\[precision = \frac{TP}{TP+FP}\]</span>
-<ul>
+<li>precision <span class="math">\[precision = \frac{TP}{TP+FP}\]</span></li>
 <li>Precision can be thought of a measure of <em>exactness</em> (i.e., what percentage of tuples labeled as positive are actually such), whereas recall is a measure of <em>completeness</em> (what percentage of positive tuples are labeled as such.)</li>
-</ul></li>
 <li><span class="math">\(F_{1}\)</span> is harmonic mean of precision and recall <span class="math">\[F_{1} = \frac{2 \times precision \times recall}{precision +
-  recall}\]</span></li>
+recall}\]</span></li>
 <li><span class="math">\(F_{\beta}\)</span>, where <span class="math">\(\beta\)</span> is a non-negative real number <span class="math">\[F_{\beta} = \frac{(1 + {\beta}^{2}) \times precision \times
-  recall}{{\beta}^{2} \times precision + recall}\]</span>
-<ul>
+recall}{{\beta}^{2} \times precision + recall}\]</span></li>
 <li>Combine precision and recall into a single measure. Commonly used <span class="math">\(F_{\beta}\)</span> measures are <span class="math">\(F_{2}\)</span> and <span class="math">\(F_{0.5}\)</span>.</li>
-</ul></li>
 </ul>
 <p>If tuples can belong to multiple classes, the accuracy measure is not appropriate. It is useful to return a probability class distribution.</p>
 <p>In addition to accuracy-based measures, classifiers can also be compared with respect to the following additional aspects:</p>
@@ -222,7 +210,7 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <li><strong>Interpretability</strong>: level of understanding and insight that is provided by the classifier or predictor. This is subjective and therefore difficult to assess.</li>
 </ul>
 <h4 id="cross-validation">Cross-Validation</h4>
-<p>In general, stratified 10-fold cross-validation is recommended for estimating accu- racy (even if computation power allows using more folds) due to its relatively low bias and variance.</p>
+<p>In general, stratified 10-fold cross-validation is recommended for estimating accuracy (even if computation power allows using more folds) due to its relatively low bias and variance.</p>
 <h4 id="bootstrap">Bootstrap</h4>
 <p>A commonly used one is the <strong>.632 bootstrap</strong>, which works as follows. Suppose we are given a data set of <span class="math">\(d\)</span> tuples. The data set is sampled d times, with replacement, resulting in a <em>bootstrap sample</em> or training set of <span class="math">\(d\)</span> samples. It is very likely that some of the original data tuples will occur more than once in this sample. The data tuples that did not make it into the training set end up forming the test set. Suppose we were to try this out several times. As it turns out, on average, 63.2% of the original data tuples will end up in the bootstrap sample, and the remaining 36.8% will form the test set (hence, the name, .632 bootstrap).</p>
 <p>We can repeat the sampling procedure k times, where in each iteration, we use the current test set to obtain an accuracy estimate of the model obtained from the current bootstrap sample. The overall accuracy of the model, M, is then estimated as</p>
@@ -231,8 +219,8 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p>Bootstrapping tends to be overly optimistic. It works best with small data sets.</p>
 <h4 id="statistical-tests-of-significance">Statistical Tests of Significance</h4>
 <p>Mean error rates are just <em>estimates</em> of error on the true population of future data cases. Although the mean error rates obtained for models may appear different, that difference may not be statistically significant. What if any difference between the models may just be attributed to chance?</p>
-<p>Suppose we have trained and tested two models, <span class="math">\(M_1\)</span> and <span class="math">\(M_2\)</span>. In such cases, we do a <strong>pairwise comparison</strong> of the two models for <em>each</em> 10-fold cross-validation round. That is, for the <span class="math">\(i\)</span>th round of 10-fold cross-validation, the same cross-validation partitioning is used to obtain an error rate for <span class="math">\(M_1\)</span> and for <span class="math">\(M_2\)</span>. Let <span class="math">\(err(M_1)_i\)</span> (or <span class="math">\(err(M_2)_i\)</span>) be the error rate of model <span class="math">\(M_1\)</span> (or <span class="math">\(M_2\)</span>) on round <span class="math">\(i\)</span>. The error rates for <span class="math">\(M_1\)</span> are averaged to obtain a mean error rate for <span class="math">\(M_1\)</span>, denoted <span class="math">\(\overline{err}(M_1)\)</span>. Similarly, we can obtain <span class="math">\(\overline{err}(M_2)\)</span>. The variance of the difference between the two models is denoted <span class="math">\(var(M_1 - M_2)\)</span>. The <em>t</em>-test computes the <em>t-statistic with k-1 degrees of freedom</em> for <em>k</em> samples. In our example, we have <em>k=10</em> (the <em>k</em> samples are error rates obtained from ten 10-fold cross-validations for each model.) The <em>t</em>-statistic for pairwise comparison is computed as follows: <span class="math">\[t = \frac{\overline{err}(M_1)-\overline{err}(M_2)}{\sqrt{var(M_1 - M_2)/k}},\]</span> where <span class="math">\[var(M_1 - M_2) = \frac{1}{k}
-\sum_{i=1}^{k}{[err(M_1)_i - err(M_2)_i - (\overline{err}(M_1) - \overline{err}(M_2))]^2}.\]</span></p>
+<p>Suppose we have trained and tested two models, <span class="math">\(M_1\)</span> and <span class="math">\(M_2\)</span>. In such cases, we do a <strong>pairwise comparison</strong> of the two models for <em>each</em> 10-fold cross-validation round. That is, for the <span class="math">\(i\)</span>th round of 10-fold cross-validation, the same cross-validation partitioning is used to obtain an error rate for <span class="math">\(M_1\)</span> and for <span class="math">\(M_2\)</span>. Let <span class="math">\(err(M_1)_i\)</span> (or <span class="math">\(err(M_2)_i\)</span>) be the error rate of model <span class="math">\(M_1\)</span> (or <span class="math">\(M_2\)</span>) on round <span class="math">\(i\)</span>. The error rates for <span class="math">\(M_1\)</span> are averaged to obtain a mean error rate for <span class="math">\(M_1\)</span>, denoted <span class="math">\(\overline{err}(M_1)\)</span>. Similarly, we can obtain <span class="math">\(\overline{err}(M_2)\)</span>. The variance of the difference between the two models is denoted <span class="math">\(var(M_1 - M_2)\)</span>. The <em>t</em>-test computes the <em>t-statistic with k-1 degrees of freedom</em> for <em>k</em> samples. In our example, we have <em>k=10</em> (the <em>k</em> samples are error rates obtained from ten 10-fold cross-validations for each model.) The <em>t</em>-statistic for pairwise comparison is computed as follows: <span class="math">\[t = \frac{\overline{err}(M_1)-\overline{err}(M_2)}{\sqrt{var(M_1 - M_2)/k}},\]</span> where <span class="math">\[var(M_1 - M_2) = \frac{1}{k} \sum_{i=1}^{k}
+{[err(M_1)_i - err(M_2)_i - (\overline{err}(M_1) - \overline{err}(M_2))]^2}.\]</span></p>
 <p>Compute <span class="math">\(t\)</span> and select a <em>significance level</em>, usually 5% or 1% in practice. Then consult a table for the <em>t-distribution</em>. We shall tell whether the difference between <span class="math">\(M_1\)</span> and <span class="math">\(M_2\)</span> is statistically significant.</p>
 <p>If two test sets are used instead of a common one, we shall use the nonpaired version of the <em>t</em>-test. The variance is estimated as <span class="math">\[var(M_1 - M_2) = \sqrt{\frac{var(M_1)}{k_1} + \frac{var(M_2}{k_2}},\]</span> and <span class="math">\(k_1\)</span> and <span class="math">\(k_2\)</span> are the number of cross-validation samples used for <span class="math">\(M_1\)</span> and <span class="math">\(M_2\)</span>, respectively. When consulting the table of <em>t</em>-distribution, the number of freedom used is taken as the minimum number of degrees of the two models.</p>
 <h4 id="cost-benefit-and-roc-curves">Cost-Benefit and ROC Curves</h4>
@@ -247,12 +235,10 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <h3 id="improving-classification-accuracy">Improving Classification Accuracy</h3>
 <p>Bagging, boosting, and random forests are examples of <strong>ensemble methods</strong>, which combine a series of base classifiers to create an improved composite classification model.</p>
 <ul>
-<li><strong>Bagging</strong>
-<ul>
+<li><strong>Bagging</strong></li>
 <li>The term <em>bagging</em> stands for <em>bootstrap aggregation</em>. Each training set is a bootstrap sample.</li>
 <li>The bagged classifier return by majority voting (or average value in continuous value prediction).</li>
 <li>The bagged classifier often has significantly greater accuracy than a single classifier derived from <em>D</em>, the original training data. It will not be considerably worse and is more robust to the effects of noisy data and overfitting. The increased accuracy occurs because the composite model reduces the variance of the individual classifiers.</li>
-</ul></li>
 <li>Boosting</li>
 <li>Random Forest</li>
 </ul>
@@ -279,14 +265,14 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <p><em>ChiSquare</em> and <em>lift</em> are sensitive to transactions that do not contain the itemsets of interest (<strong>null-transaction</strong>); they would generate unstable results. Therefore we need other measures which are <strong>null-invariant</strong>. Here are four of them.</p>
 <ul>
 <li><strong>All confidence</strong> <span class="math">\[all\_conf(A,B)
-    = \frac{sup(A∪B)}{max(sup(A), sup(B))}
-    = min(P(A|B),P(B|A))\]</span> <span class="math">\(all\_conf(A,B)\)</span> is the minimum confidence of the two association rules related to <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, namely, <span class="math">\(A ⇒ B\)</span> and <span class="math">\(B ⇒ A\)</span>. [Omi03; LKCH03]</li>
+= \frac{sup(A∪B)}{max(sup(A), sup(B))}
+= min(P(A|B),P(B|A))\]</span> <span class="math">\(all\_conf(A,B)\)</span> is the minimum confidence of the two association rules related to <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, namely, <span class="math">\(A ⇒ B\)</span> and <span class="math">\(B ⇒ A\)</span>. [Omi03; LKCH03]</li>
 <li><strong>Max confidence</strong> <span class="math">\[max\_conf(A,B) = max(P(A|B),P(B|A))\]</span> <span class="math">\(max\_conf(A,B)\)</span> measure is the maximum confidence of the two association rules, <span class="math">\(A ⇒ B\)</span> and <span class="math">\(B ⇒ A\)</span>.</li>
 <li><strong>Kulczynski</strong> <span class="math">\[Kulc(A,B) = \frac{1}{2} (P(A|B) + P(B|A))\]</span> It is the average of two conditional probabilities: the probability of itemset <span class="math">\(B\)</span> given itemset <span class="math">\(A\)</span>, and the probability of itemset <span class="math">\(A\)</span> given itemset <span class="math">\(B\)</span>. [WCH10]</li>
 <li><strong>Cosine</strong> <span class="math">\[cosine(A,B)
-    = \frac{P(A∪B)}{\sqrt{P(A) \times P(B)}}
-    = \frac{sup(A∪B)}{\sqrt{sup(A) \times sup(B)}}
-    = \sqrt{P(A|B) \times P(B|A})\]</span> The cosine measure can be viewed as a <em>harmonized lift</em> measure.</li>
+= \frac{P(A∪B)}{\sqrt{P(A) \times P(B)}}
+= \frac{sup(A∪B)}{\sqrt{sup(A) \times sup(B)}}
+= \sqrt{P(A|B) \times P(B|A})\]</span> The cosine measure can be viewed as a <em>harmonized lift</em> measure.</li>
 </ul>
 <p>To compare the four null-invariant measures, we need <strong>imbalance ratio (IR)</strong>:</p>
 <p><span class="math">\[IR(A,B) = \frac{|sup(A) − sup(B)|}{sup(A) + sup(B) − sup(A∪B)}\]</span></p>
@@ -298,10 +284,8 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <ul>
 <li>Ignore</li>
 <li>Fill in manually</li>
-<li>Automatically fill in constants (e.g. NULL, Unknown)
-<ul>
+<li>Automatically fill in constants (e.g. NULL, Unknown)</li>
 <li>Null values can be different. How to tell &quot;I don't remember that.&quot; from &quot;I do not have one.&quot;?</li>
-</ul></li>
 <li>Fill in mean/median/estimation</li>
 </ul>
 <p>Noisy data</p>
@@ -333,27 +317,19 @@ log_{2}(\frac{|D_j|}{|D|})}\]</span> <span class="math">\[GainRatio(A) = \frac{G
 <h2 id="data-reduction">Data Reduction</h2>
 <p><strong>Data reduction</strong> techniques can be applied to obtain a reduced representation of the data set that is much smaller in volume, yet closely maintains the integrity of the original data.</p>
 <ul>
-<li>Dimension reduction
-<ul>
-<li>Wavelet transform
-<ul>
+<li>Dimension reduction</li>
+<li>Wavelet transform</li>
 <li>fast DWT, <em>O(n)</em></li>
-</ul></li>
 <li>PCA<sup><a href="#fn2" class="footnoteRef" id="fnref2">2</a></sup></li>
 <li>Attribute(feature) subset selection</li>
-</ul></li>
 <li>Numerosity reduction</li>
-<li>Parametric method: use a model to estimate the data; store only the model (and outliers if necessary)
-<ul>
+<li>Parametric method: use a model to estimate the data; store only the model (and outliers if necessary)</li>
 <li>regression models</li>
-</ul></li>
-<li>Nonparametric method
-<ul>
+<li>Nonparametric method</li>
 <li>Histogram</li>
 <li>Clustering</li>
 <li>Sampling</li>
 <li>Data cube aggregation</li>
-</ul></li>
 <li>Data compression</li>
 <li>lossless</li>
 <li>lossy</li>
